@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Christmas present</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="./assets/css/style-base.css">
+    <link rel="stylesheet" href="./assets/css/style-main.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <input type="checkbox" hidden class="hide-content" id="hide-checkbox">
+
+        <div class="welcome">
+            <div class="welcome-content">
+                <header class="welcome-header">
+                    Welcome to my page!
+
+                    <p>To get started, please enter your name here.</p>
+                </header>
+
+                <div class="welcome-body">
+                    <input type="text" placeholder="Please type your name here" class="name-input" id="name">
+
+                    
+                    <button class="button-29" role="button" id="btn-submit">Enter</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-1">
+            <div class="slide-1-content">
+                <header class="slide-1-header-1">
+                    ...
+                </header>
+
+                <header class="slide-1-header-2">
+                    Giúp tớ bật đèn lên nhé!
+                </header>
+
+                <div class="slide-1-box">
+                    <img src="./assets/css/img/lightbulb.png" alt="" class="slide-1-light">
+                </div>
+
+                <p class="slide-1-footer">Nhấn vào bóng đèn nàyy.</p>
+            </div>
+        </div>
+
+        <div class="slide-2">
+            <div class="slide-2-content">
+                <header class="slide-2-header-1">
+                    Hmm, hóa ra là 1 căn phòng à. Nhìn cũng đẹp ấy nhỉ?
+                </header>
+
+                <header class="slide-2-header-2">
+                    Ồ, có 1 hộp quà để sẵn ở đây nè. Nó ghi tên của cậu đấy,...
+                </header>
+
+                <header class="slide-2-header-3">
+                    Mở ra điii!!
+                </header>
+
+                <div class="slide-2-box">
+                    <img src="./assets/css/img/gift.png" alt="" class="slide-2-gift">
+                </div>
+
+                <p class="slide-2-footer">Nhấn vào hộp quà để mở quà nhée</p>
+            </div>
+
+            <div class="slide-2-content-2">
+                <img src="./assets/css/img/bell.png" alt="" class="slide-2-bell-1">
+
+                <img src="./assets/css/img/bell.png" alt="" class="slide-2-bell-2">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn-submit");
+        let lightBulb = document.querySelector(".slide-1-light");
+        let submitCheckbox = document.getElementById("hide-checkbox");
+        let headerAppear1 = document.querySelector(".slide-1-header-1");
+        let headerAppear2 = document.querySelector(".slide-1-header-2");  
+        let footerAppear = document.querySelector(".slide-1-footer");
+        let slide1 = document.querySelector(".slide-1");
+        let slide2 = document.querySelector(".slide-2");
+        let header1Slide2 = document.querySelector(".slide-2-header-1");
+        let header2Slide2 = document.querySelector(".slide-2-header-2");
+        let header3Slide2 = document.querySelector(".slide-2-header-3");
+        let footer2 = document.querySelector(".slide-2-footer");
+        let gift = document.querySelector(".slide-2-gift");
+        let fadeAway = function(...element) {
+            setTimeout(function() {
+                for (let i = 0; i < element.length - 1; i++)
+                {
+                    element[i].classList.add("disappear");
+                }
+            }, element[element.length - 1]);
+        }
+        let fadeIn = function(element, time) {
+            setTimeout(function() {
+                element.classList.add("appear");
+            }, time);
+        }
+        btn.onclick = function() {
+            let inputName = document.getElementById("name").value;
+            if (!inputName)
+            {
+                alert("Please type your name!");
+            }
+            else
+            {
+                headerAppear1.innerHTML = `Hello ${inputName}. Khoan, hình như ở đây hơi tối nhỉ??`;
+                header2Slide2.innerHTML = `Ồ, có 1 hộp quà để sẵn ở đây nè. Nó ghi tên của cậu đấy, ${inputName}.`;
+                submitCheckbox.checked = true;
+                fadeIn(headerAppear1, 2000);
+                fadeIn(headerAppear2, 4000);
+                fadeIn(lightBulb, 5000);
+                fadeIn(footerAppear, 5000);
+            }
+        }
+        lightBulb.onclick = function() {
+            fadeAway(headerAppear1, headerAppear2, lightBulb, footerAppear, 1000);
+            fadeAway(slide1, 4000);
+            setTimeout(function() {
+                slide1.classList.add("delete");
+            }, 6000);
+            fadeIn(header1Slide2, 7000);
+            fadeAway(header1Slide2, 9000);
+            setTimeout(function() {
+                header1Slide2.classList.add("delete");
+            }, 10000);
+            fadeIn(header2Slide2, 10000);
+            fadeIn(header3Slide2, 11000);
+            fadeIn(footer2, 13000);
+            fadeIn(gift, 13000);
+        }
+        gift.onclick = function() {
+            let contentSlide2 = document.querySelector(".slide-2-content");
+            let content2Slide2 = document.querySelector(".slide-2-content-2")
+            fadeAway(header2Slide2, header3Slide2, footer2, gift, 1000);
+            setTimeout(function() {
+                header2Slide2.classList.add("delete");
+                header3Slide2.classList.add("delete");
+                footer2.classList.add("delete");
+                gift.classList.add("delete");
+            }, 3000);
+            setTimeout(function() {
+                content2Slide2.classList.add("return");
+            }, 4000);
+            setTimeout(function() {
+                content2Slide2.classList.add("appear");
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
