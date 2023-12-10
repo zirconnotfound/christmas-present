@@ -103,6 +103,16 @@ a {
 .return {
     display: block!important;
 }
+.postopen {
+    animation: rotate1 .3s linear 10 alternate !important;
+    transform: scale(1.25);
+}
+.open {
+    animation: open 1s linear alternate !important;
+}
+.switch {
+    background-image: url("./img/postcard.png")!important;
+}
 @keyframes appear {
     0% {
         opacity: 0;
@@ -113,28 +123,44 @@ a {
 }
 @keyframes heartbeat {
     0% {
-        transform: translate(-50%, -50%)scale(1);
+        transform: scale(1);
     }
     50% {
-        transform: translate(-50%,-50%)scale(1.25);
+        transform: scale(1.25);
     }
     100% {
-        transform: translate(-50%,-50%)scale(1);
+        transform: scale(1);
     }
 }
 @keyframes rotate1 {
     0% {
-        transform: rotate(0);
+        transform: rotate(15deg);
     }
     100% {
-        transform: rotate(30deg);
+        transform: rotate(-15deg);
     }
 }
 @keyframes rotate2 {
     0% {
-        transform: rotate(0);
+        transform: rotate(-15deg);
     }
     100% {
-        transform: rotate(-30deg);
+        transform: rotate(15deg);
+    }
+}
+@keyframes updown {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(5%);
+    }
+}
+@keyframes open {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(3);
     }
 }
