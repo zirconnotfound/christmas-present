@@ -34,6 +34,8 @@
 
                     
                     <button class="button-29" role="button" id="btn-submit">Enter</button>
+
+                    <audio src="./assets/css/audio/click.mp3" hidden class="click"></audio>
                 </div>
             </div>
         </div>
@@ -50,6 +52,8 @@
 
                 <div class="slide-1-box">
                     <img src="./assets/css/img/lightbulb.png" alt="" class="slide-1-light">
+
+                    <audio src="./assets/css/audio/switch.mp3" hidden class="switch"></audio>
                 </div>
 
                 <p class="slide-1-footer">Nhấn vào bóng đèn nàyy.</p>
@@ -58,6 +62,7 @@
 
         <div class="slide-2">
             <div class="slide-2-content">
+                <audio src="./assets/css/audio/fireplace.mp3" hidden class="fire"></audio>
                 <header class="slide-2-header-1">
                     Hmm, hóa ra là 1 căn phòng à. Nhìn cũng đẹp ấy nhỉ?
                 </header>
@@ -75,6 +80,8 @@
                 </div>
 
                 <p class="slide-2-footer">Nhấn vào hộp quà để mở quà nhée</p>
+
+                <audio src="./assets/css/audio/open.mp3" hidden class="open-box"></audio>
             </div>
 
             <div class="slide-2-content-2">
@@ -102,6 +109,7 @@
         let footer2 = document.querySelector(".slide-2-footer");
         let gift = document.querySelector(".slide-2-gift");
         let content2Slide2 = document.querySelector(".slide-2-content-2");
+        let fireplace = document.querySelector(".fire");
         let fadeAway = function(...element) {
             setTimeout(function() {
                 for (let i = 0; i < element.length - 1; i++)
@@ -123,9 +131,11 @@
             }
             else
             {
+                let clickBtn = document.querySelector(".click");
+                clickBtn.play();
                 headerAppear1.innerHTML = `Hello ${inputName}. Khoan, hình như ở đây hơi tối nhỉ??`;
                 header2Slide2.innerHTML = `Ồ, có 1 hộp quà để sẵn ở đây nè. Nó ghi tên của cậu đấy, ${inputName}.`;
-                if (inputName == "Ngân" || inputName == "Bảo Ngân" || inputName == "baongan")
+                if (inputName == "Mun" || inputName == "Nguyễn Thị Bảo Ngân" || inputName == "baongan" || inputName == "Bảo Ngân")
                 {
                     content2Slide2.classList.add("switch");
                 }
@@ -137,7 +147,12 @@
             }
         }
         lightBulb.onclick = function() {
+            let switchSound = document.querySelector(".switch");
+            switchSound.play();
             fadeAway(headerAppear1, headerAppear2, lightBulb, footerAppear, 1000);
+            setTimeout(function() {
+                fireplace.play();
+            })
             fadeAway(slide1, 4000);
             setTimeout(function() {
                 slide1.classList.add("delete");
@@ -153,7 +168,14 @@
             fadeIn(gift, 13000);
         }
         gift.onclick = function() {
+            fireplace.pause();
+            let openBox = document.querySelector(".open-box");
+            openBox.play();
             gift.classList.add("postopen");
+            setTimeout(function() {
+                let audio = document.querySelector(".audio");
+                audio.play();
+            }, 3000);
             setTimeout(function() {
                 gift.classList.add("open");
                 gift.classList.add("disappear");
@@ -167,8 +189,6 @@
             }, 4000);
             setTimeout(function() {
                 content2Slide2.classList.add("return");
-                let audio = document.querySelector(".audio");
-                audio.play();
             }, 4500);
             setTimeout(function() {
                 content2Slide2.classList.add("appear");
