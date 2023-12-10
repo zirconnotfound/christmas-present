@@ -111,7 +111,7 @@ a {
     animation: open 1s linear alternate !important;
 }
 .switch {
-    background-image: url("./img/postcard.png")!important;
+    background-image: url("./img/postcard2.png")!important;
 }
 @keyframes appear {
     0% {
