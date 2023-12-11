@@ -62,7 +62,7 @@
 
         <div class="slide-2">
             <div class="slide-2-content">
-                <audio src="./assets/css/audio/fireplace.mp3" hidden class="fire"></audio>
+                <audio src="./assets/css/audio/fireplace.mp3" hidden loop class="fire"></audio>
                 <header class="slide-2-header-1">
                     Hmm, hóa ra là 1 căn phòng à. Nhìn cũng đẹp ấy nhỉ?
                 </header>
@@ -89,7 +89,9 @@
 
                 <img src="./assets/css/img/bell.png" alt="" class="slide-2-bell-2">
 
-                <audio src="./assets/css/audio/audio.mp3" hidden class="audio"></audio>
+                <audio src="./assets/css/audio/audio.mp3" hidden loop class="audio"></audio>
+
+                <audio src="./assets/css/audio/audio2.mp3" hidden loop class="audio-2"></audio>
             </div>
         </div>
     </div>
@@ -110,6 +112,7 @@
         let gift = document.querySelector(".slide-2-gift");
         let content2Slide2 = document.querySelector(".slide-2-content-2");
         let fireplace = document.querySelector(".fire");
+        let audio = document.querySelector(".audio");
         let fadeAway = function(...element) {
             setTimeout(function() {
                 for (let i = 0; i < element.length - 1; i++)
@@ -135,9 +138,15 @@
                 clickBtn.play();
                 headerAppear1.innerHTML = `Hello ${inputName}. Khoan, hình như ở đây hơi tối nhỉ??`;
                 header2Slide2.innerHTML = `Ồ, có 1 hộp quà để sẵn ở đây nè. Nó ghi tên của cậu đấy, ${inputName}.`;
-                if (inputName == "Mun" || inputName == "Nguyễn Thị Bảo Ngân" || inputName == "baongan" || inputName == "Bảo Ngân")
+                if (inputName == "Mun" || inputName == "Nguyễn Thị Bảo Ngân" || inputName == "baongandayyyyy" || inputName == "Bảo Ngân")
                 {
                     content2Slide2.classList.add("switch");
+                    headerAppear1.innerHTML = `Glad to see you again, ${inputName}. But you are the only one can see this.`;
+                    headerAppear2.innerHTML = "First, let's turn on this light, shall we?";
+                    header1Slide2.innerHTML = "Well well, a familiar scene. I think you've been here before.";
+                    header2Slide2.innerHTML = "It's the same box, with your name on it. But it is also a bit different.";
+                    header3Slide2.innerHTML = "Open it, please!";
+                    audio = document.querySelector(".audio-2");
                 }
                 submitCheckbox.checked = true;
                 fadeIn(headerAppear1, 2000);
@@ -173,7 +182,6 @@
             openBox.play();
             gift.classList.add("postopen");
             setTimeout(function() {
-                let audio = document.querySelector(".audio");
                 audio.play();
             }, 3000);
             setTimeout(function() {
